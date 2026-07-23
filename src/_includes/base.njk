@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ title }} — Фотостудия «Циркуль»</title>
+  <meta name="description" content="{{ description }}">
+  <meta property="og:title" content="{{ title }} — Фотостудия «Циркуль»">
+  <meta property="og:description" content="{{ description }}">
+  <meta property="og:type" content="website">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo logo-text" href="/">Циркуль</a>
+    <nav class="nav">
+      <a href="/">Главная</a>
+      <a href="/services/">Услуги</a>
+      <a href="/rent/">Аренда</a>
+      <a href="/booking/">Записаться</a>
+    </nav>
+    <div class="socials">
+      <a href="https://vk.me/studio_circle" aria-label="VK">VK</a>
+      <a href="https://t.me/circle_surgut" aria-label="Telegram">TG</a>
+      <a href="https://instagram.com/circle_2.0" aria-label="Instagram">IG</a>
+    </div>
+  </header>
+
+  {% if site.announcement %}
+  <div class="ticker">
+    <div class="ticker-track">
+      <span>{{ site.announcement }}</span>
+      <span>{{ site.announcement }}</span>
+    </div>
+  </div>
+  {% endif %}
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-about">
+        <a class="logo logo-text" href="/">Циркуль</a>
+        <p>Фотостудия «Циркуль», Сургут, ул. Маяковского 57, строение 3</p>
+        <p>10:00–20:00 · <a href="tel:+79804520512">+7 (980) 452-05-12</a></p>
+        <div class="socials">
+          <a href="https://vk.me/studio_circle" aria-label="VK">VK</a>
+          <a href="https://t.me/circle_surgut" aria-label="Telegram">TG</a>
+          <a href="https://instagram.com/circle_2.0" aria-label="Instagram">IG</a>
+          <a href="https://youtube.com/@studiocircle" aria-label="YouTube">YT</a>
+          <a href="https://2gis.ru" aria-label="2ГИС">2ГИС</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Навигация</h4>
+        <a href="/">Главная</a>
+        <a href="/services/">Услуги</a>
+        <a href="/rent/">Аренда</a>
+        <a href="/booking/">Записаться</a>
+      </div>
+      <div class="footer-col">
+        <h4>Информация</h4>
+        <a href="/legal/oferta/">Оферта</a>
+        <a href="/legal/privacy/">Политика конфиденциальности</a>
+        <a href="/legal/consent/">Согласие на обработку персональных данных</a>
+      </div>
+    </div>
+    <p class="footer-copy">© Копирование материалов запрещено</p>
+  </footer>
+
+  <a class="floating-book" href="{{ site.booking_url }}" target="_blank" rel="noopener">Забронировать онлайн</a>
+
+  <script src="/js/main.js" defer></script>
+</body>
+</html>

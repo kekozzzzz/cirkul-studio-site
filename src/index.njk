@@ -1,0 +1,121 @@
+---
+layout: base.njk
+title: Главная
+description: "Фотостудия «Циркуль» в Сургуте — аренда залов для фотосъёмок, видеосъёмок и мероприятий."
+---
+<section class="hero hero--full"{% if site.cover %} style="background-image: url('{{ site.cover }}')"{% endif %}>
+  <h1>Больше, чем просто фотостудия</h1>
+  <p>Пять залов на любой сценарий съёмки — от портретной сессии до масштабного мероприятия.
+  Бронируйте онлайн, приезжайте и снимайте.</p>
+  <div class="hero-actions">
+    <a class="btn" href="#halls">Выбрать зал</a>
+    <a class="btn btn-outline" href="/booking/">Записаться</a>
+  </div>
+</section>
+
+<nav class="page-jump" aria-label="Быстрая навигация по разделам">
+  <a href="#halls">Залы</a>
+  <a href="#makeup">Гримёрное место</a>
+  <a href="#equipment-teaser">Оборудование</a>
+  <a href="#promos">Акции</a>
+  <a href="#community">Снято у нас</a>
+  <a href="#contacts">Контакты</a>
+</nav>
+
+<section class="halls-preview" id="halls">
+  <h2>Наши залы</h2>
+  <div class="halls-carousel drag-scroll">
+    {% set compact = true %}
+    {% for hall in collections.halls %}
+      {% include "hall-card.njk" %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="perks">
+  <h2>Наши преимущества</h2>
+  <p class="placeholder-note">Раздел зарезервирован — текст пришлёт клиент.</p>
+</section>
+
+<section class="teaser-section" id="makeup">
+  <h2>Гримёрное место</h2>
+  <div class="teasers">
+    {% for item in collections.equipment %}
+      {% if item.data.category == "Гримёрный стол" %}
+        <article class="teaser-card">
+          {% if item.data.image %}
+            <img src="{{ item.data.image }}" alt="{{ item.data.name }}" loading="lazy">
+          {% else %}
+            <div class="hall-img-placeholder">фото «{{ item.data.name }}»</div>
+          {% endif %}
+          <h3>{{ item.data.name }}</h3>
+          <p class="hall-price">{{ item.data.price_hint }}</p>
+          <a class="btn btn-outline" href="/services/#equipment">Подробнее</a>
+        </article>
+      {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="teaser-section" id="equipment-teaser">
+  <h2>Оборудование</h2>
+  <p class="section-intro">Свет, фоны и аксессуары для съёмки — уточняем у Елизаветы полный список
+  по каждому залу.</p>
+  <a class="btn btn-outline" href="/services/#equipment">Смотреть оборудование во всех залах</a>
+</section>
+
+<section class="promo-section" id="promos">
+  <h2>Акции</h2>
+  {% if collections.promos.length %}
+    <div class="promo-grid">
+      {% for promo in collections.promos %}
+        <article class="promo-card">
+          {% if promo.data.image %}
+            <img src="{{ promo.data.image }}" alt="{{ promo.data.name }}" loading="lazy">
+          {% endif %}
+          <h3>{{ promo.data.name }}</h3>
+          {% if promo.data.description %}<p>{{ promo.data.description }}</p>{% endif %}
+        </article>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="placeholder-note">Актуальных акций пока нет — уточняем у Елизаветы, будут ли.</p>
+  {% endif %}
+</section>
+
+<section class="community-section" id="community">
+  <h2>Снято у нас</h2>
+  {% if collections.communityPhotos.length %}
+    <div class="community-carousel drag-scroll">
+      {% for photo in collections.communityPhotos %}
+        <a class="community-card" href="{{ photo.data.link or '#' }}"{% if photo.data.link %} target="_blank" rel="noopener"{% endif %}>
+          <img src="{{ photo.data.image }}" alt="{{ photo.data.caption or 'Снято у нас' }}" loading="lazy">
+          {% if photo.data.caption %}<p>{{ photo.data.caption }}</p>{% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p class="placeholder-note">Здесь появятся фото и сторис клиентов — Елизавета будет загружать их сама через админку.</p>
+  {% endif %}
+</section>
+
+<section class="contacts-section" id="contacts">
+  <h2>Контакты</h2>
+  <div class="contacts-block">
+    <div class="contacts-info">
+      <p>Фотостудия «Циркуль», Сургут, ул. Маяковского 57, строение 3</p>
+      <p>Ежедневно 10:00–20:00</p>
+      <p><a href="tel:+79804520512">+7 (980) 452-05-12</a></p>
+      <div class="socials">
+        <a href="https://vk.me/studio_circle" aria-label="VK">VK</a>
+        <a href="https://t.me/circle_surgut" aria-label="Telegram">TG</a>
+        <a href="https://instagram.com/circle_2.0" aria-label="Instagram">IG</a>
+        <a href="https://youtube.com/@studiocircle" aria-label="YouTube">YT</a>
+        <a href="https://2gis.ru" aria-label="2ГИС">2ГИС</a>
+      </div>
+    </div>
+    <div class="contacts-map">
+      <iframe src="https://yandex.ru/map-widget/v1/?text=Сургут%2C%20ул.%20Маяковского%2057%2C%20строение%203" loading="lazy" allowfullscreen title="Карта проезда"></iframe>
+    </div>
+  </div>
+</section>

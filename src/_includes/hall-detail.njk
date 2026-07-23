@@ -1,0 +1,53 @@
+---
+layout: base.njk
+eleventyComputed:
+  title: "{{ name }}"
+  description: "{{ description }}"
+---
+<a class="hall-back" href="/services/">← Все залы</a>
+
+<article class="hall-detail">
+  <div class="hall-detail-gallery drag-scroll">
+    {% if gallery and gallery.length %}
+      {% for photo in gallery %}
+        <img src="{{ photo }}" alt="{{ name }}" loading="lazy">
+      {% endfor %}
+    {% elif image %}
+      <img src="{{ image }}" alt="{{ name }}" loading="lazy">
+    {% endif %}
+  </div>
+
+  <h1>{{ name }}</h1>
+
+  {% if description %}
+    <p class="hall-description">{{ description }}</p>
+  {% endif %}
+
+  <div class="hall-detail-meta">
+    <div class="meta-card">
+      <h4>Цена</h4>
+      <p>{{ price_hint }}</p>
+    </div>
+    {% if capacity_included %}
+      <div class="meta-card">
+        <h4>Вместимость</h4>
+        <p>до {{ capacity_included }} чел. включено в цену{% if capacity_total %} (всего вмещает до {{ capacity_total }}){% endif %}</p>
+      </div>
+    {% endif %}
+    {% if hours %}
+      <div class="meta-card">
+        <h4>Часы работы</h4>
+        <p>{{ hours }}</p>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if features and features.length %}
+    <h3>Преимущества зала</h3>
+    <ul class="hall-features">
+      {% for f in features %}<li>{{ f }}</li>{% endfor %}
+    </ul>
+  {% endif %}
+
+  <a class="btn" href="{{ booking_url or '/booking/' }}" target="_blank" rel="noopener">Забронировать</a>
+</article>

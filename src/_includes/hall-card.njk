@@ -1,0 +1,35 @@
+<article class="hall-card">
+  {% if hall.data.image %}
+    <img src="{{ hall.data.image }}" alt="{{ hall.data.name }}" loading="lazy">
+  {% else %}
+    <div class="hall-img-placeholder">фото зала «{{ hall.data.name }}»</div>
+  {% endif %}
+  <h3>{{ hall.data.name }}</h3>
+
+  {% if not compact %}
+    {% if hall.data.description %}
+      <p class="hall-description">{{ hall.data.description }}</p>
+    {% endif %}
+    {% if hall.data.features %}
+      <ul class="hall-features">
+        {% for f in hall.data.features %}<li>{{ f }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+  {% endif %}
+
+  <p class="hall-limit">
+    {%- if hall.data.capacity_included -%}
+      до {{ hall.data.capacity_included }} чел. включено в цену{% if hall.data.capacity_total %} (всего вмещает до {{ hall.data.capacity_total }}){% endif %}
+    {%- elif hall.data.limit -%}
+      {{ hall.data.limit }}
+    {%- endif -%}
+  </p>
+  <p class="hall-price">{{ hall.data.price_hint }}</p>
+  {% if not compact and hall.data.hours %}
+    <p class="hall-hours">{{ hall.data.hours }}</p>
+  {% endif %}
+  <div class="hall-card-actions">
+    <a class="btn btn-outline" href="{{ hall.url }}">Подробнее</a>
+    <a class="btn" href="{{ hall.data.booking_url or '/booking/' }}" target="_blank" rel="noopener">Забронировать</a>
+  </div>
+</article>

@@ -1,0 +1,84 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "src/images"
+public_folder: "/images"
+
+collections:
+  - name: "settings"
+    label: "Настройки сайта"
+    files:
+      - name: "site"
+        label: "Общие"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Обложка (фон на Главной)", name: "cover", widget: "image", required: false }
+          - { label: "Ссылка на бронирование (Cue Business)", name: "booking_url", widget: "string" }
+          - { label: "Бегущая строка-анонс (пусто — строка не показывается)", name: "announcement", widget: "string", required: false }
+
+  - name: "halls"
+    label: "Залы"
+    folder: "src/halls"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Порядок", name: "order", widget: "number" }
+      - { label: "Название", name: "name", widget: "string" }
+      - { label: "Описание", name: "description", widget: "text", required: false }
+      - { label: "Преимущества", name: "features", widget: "list", required: false }
+      - { label: "Вместимость включена в цену (чел.)", name: "capacity_included", widget: "number", required: false }
+      - { label: "Вместимость всего (чел.)", name: "capacity_total", widget: "number", required: false }
+      - { label: "Цена (подсказка)", name: "price_hint", widget: "string" }
+      - { label: "Часы работы", name: "hours", widget: "string", required: false }
+      - { label: "Фото-обложка (для карточки)", name: "image", widget: "image", required: false }
+      - { label: "Фотогалерея зала (для страницы зала)", name: "gallery", widget: "list", field: { label: "Фото", name: "photo", widget: "image" }, required: false }
+      - { label: "Ссылка на бронь", name: "booking_url", widget: "string", required: false }
+
+  - name: "equipment"
+    label: "Оборудование"
+    folder: "src/equipment"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Порядок", name: "order", widget: "number" }
+      - { label: "Категория", name: "category", widget: "select", options: ["Гримёрный стол", "Фотооборудование"] }
+      - { label: "Название", name: "name", widget: "string" }
+      - { label: "Цена (подсказка)", name: "price_hint", widget: "string" }
+      - { label: "Часы работы", name: "hours", widget: "string", required: false }
+      - { label: "Фото", name: "image", widget: "image", required: false }
+      - { label: "Ссылка на бронь", name: "booking_url", widget: "string", required: false }
+
+  - name: "extraServices"
+    label: "Дополнительные услуги"
+    folder: "src/extra-services"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Порядок", name: "order", widget: "number" }
+      - { label: "Название", name: "name", widget: "string" }
+      - { label: "Описание", name: "description", widget: "text", required: false }
+      - { label: "Цена (подсказка)", name: "price_hint", widget: "string", required: false }
+      - { label: "Фото", name: "image", widget: "image", required: false }
+
+  - name: "promos"
+    label: "Акции"
+    folder: "src/promos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Порядок", name: "order", widget: "number" }
+      - { label: "Название", name: "name", widget: "string" }
+      - { label: "Описание", name: "description", widget: "text", required: false }
+      - { label: "Фото", name: "image", widget: "image", required: false }
+
+  - name: "communityPhotos"
+    label: "Снято у нас"
+    folder: "src/community-photos"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Порядок", name: "order", widget: "number" }
+      - { label: "Фото", name: "image", widget: "image" }
+      - { label: "Подпись", name: "caption", widget: "string", required: false }
+      - { label: "Ссылка (например, на пост в соцсети)", name: "link", widget: "string", required: false }
