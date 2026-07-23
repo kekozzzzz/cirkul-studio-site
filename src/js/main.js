@@ -37,3 +37,32 @@ document.querySelectorAll(".drag-scroll").forEach((el) => {
     true
   );
 });
+
+// Шторка меню (справа), открывается по кнопке-гамбургеру в шапке
+const menuToggle = document.querySelector(".menu-toggle");
+const navDrawer = document.querySelector(".nav-drawer");
+const navOverlay = document.querySelector(".nav-drawer-overlay");
+const navClose = document.querySelector(".nav-drawer-close");
+
+function closeDrawer() {
+  navDrawer.classList.remove("open");
+  navOverlay.classList.remove("open");
+  menuToggle.setAttribute("aria-expanded", "false");
+}
+
+function openDrawer() {
+  navDrawer.classList.add("open");
+  navOverlay.classList.add("open");
+  menuToggle.setAttribute("aria-expanded", "true");
+}
+
+if (menuToggle && navDrawer && navOverlay) {
+  menuToggle.addEventListener("click", () => {
+    navDrawer.classList.contains("open") ? closeDrawer() : openDrawer();
+  });
+  navOverlay.addEventListener("click", closeDrawer);
+  navClose?.addEventListener("click", closeDrawer);
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") closeDrawer();
+  });
+}
