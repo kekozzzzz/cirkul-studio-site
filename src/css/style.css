@@ -501,6 +501,8 @@ main {
   padding: 1rem;
   text-align: center;
   background: var(--color-bg-raised);
+  display: flex;
+  flex-direction: column;
 }
 
 .hall-img-placeholder {
@@ -529,7 +531,8 @@ main {
   gap: 0.5rem;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.75rem;
 }
 
 .hall-limit, .hall-price, .hall-hours {
@@ -831,13 +834,26 @@ main {
 
 .gallery-slide {
   flex: 0 0 100%;
+  height: min(70vh, 560px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #1b1b1b;
 }
 
 .gallery-slide img {
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  object-fit: cover;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
   display: block;
+}
+
+@media (max-width: 640px) {
+  .gallery-slide {
+    height: min(60vh, 440px);
+  }
 }
 
 /* Встроенный календарь бронирования (Cue Business в iframe) */
