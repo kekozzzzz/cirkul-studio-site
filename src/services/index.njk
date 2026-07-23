@@ -7,10 +7,14 @@ description: "Аренда залов и фотооборудования в с�
   <h1>Аренда залов</h1>
   <p class="section-intro">Пять залов под разные сценарии съёмки — выбирайте подходящий и
   бронируйте на сайте.</p>
-  <div class="halls-carousel halls-carousel-full">
-    {% for hall in collections.halls %}
-      {% include "hall-card.njk" %}
-    {% endfor %}
+  <div class="carousel-nav">
+    <button class="slider-arrow prev" type="button" aria-label="Назад">‹</button>
+    <div class="halls-carousel carousel-scroll halls-carousel-full">
+      {% for hall in collections.halls %}
+        {% include "hall-card.njk" %}
+      {% endfor %}
+    </div>
+    <button class="slider-arrow next" type="button" aria-label="Вперёд">›</button>
   </div>
 </section>
 

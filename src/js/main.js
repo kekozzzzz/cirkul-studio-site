@@ -100,3 +100,48 @@ document.querySelectorAll(".halls-slider").forEach((slider) => {
 
   update();
 });
+
+// Карусель со стрелками (Услуги — залы): стрелки листают, скролл нативный на тач
+document.querySelectorAll(".carousel-nav").forEach((nav) => {
+  const scroller = nav.querySelector(".carousel-scroll");
+  const prevBtn = nav.querySelector(".slider-arrow.prev");
+  const nextBtn = nav.querySelector(".slider-arrow.next");
+  if (!scroller) return;
+
+  function step() {
+    const card = scroller.querySelector(":scope > *");
+    const cardWidth = card ? card.getBoundingClientRect().width + 24 : scroller.clientWidth * 0.8;
+    return cardWidth;
+  }
+
+  prevBtn?.addEventListener("click", () => scroller.scrollBy({ left: -step(), behavior: "smooth" }));
+  nextBtn?.addEventListener("click", () => scroller.scrollBy({ left: step(), behavior: "smooth" }));
+});
+
+// Лайтбокс — клик по фото галереи зала открывает его на весь экран
+const lightbox = document.createElement("div");
+lightbox.className = "lightbox";
+lightbox.innerHTML = '<button class="lightbox-close" type="button" aria-label="Закрыть">×</button><img alt="">';
+document.body.appendChild(lightbox);
+const lightboxImg = lightbox.querySelector("img");
+
+function openLightbox(src, alt) {
+  lightboxImg.src = src;
+  lightboxImg.alt = alt || "";
+  lightbox.classList.add("open");
+}
+function closeLightbox() {
+  lightbox.classList.remove("open");
+  lightboxImg.src = "";
+}
+
+document.querySelectorAll(".gallery-slide img").forEach((img) => {
+  img.addEventListener("click", () => openLightbox(img.src, img.alt));
+});
+
+lightbox.addEventListener("click", (e) => {
+  if (e.target === lightbox || e.target.classList.contains("lightbox-close")) closeLightbox();
+});
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeLightbox();
+});

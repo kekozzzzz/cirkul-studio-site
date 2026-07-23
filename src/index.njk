@@ -23,7 +23,7 @@ description: "Фотостудия «Циркуль» в Сургуте — ар
           <div class="hall-slide-content">
             <h3><a href="{{ hall.url }}">{{ hall.data.name }}</a></h3>
             {% if hall.data.description %}<p>{{ hall.data.description }}</p>{% endif %}
-            <a class="btn" href="{{ hall.url }}">Подробнее и бронь</a>
+            <a class="btn" href="{{ hall.url }}">Подробнее</a>
           </div>
         </article>
       {% endfor %}
@@ -105,6 +105,29 @@ description: "Фотостудия «Циркуль» в Сургуте — ар
   {% endif %}
 </section>
 
+<section class="services-extra" id="extra">
+  <h2>Дополнительные услуги</h2>
+  {% if collections.extraServices.length %}
+    <div class="extra-grid">
+      {% for item in collections.extraServices %}
+        <article class="extra-card">
+          {% if item.data.image %}
+            <img src="{{ item.data.image }}" alt="{{ item.data.name }}" loading="lazy">
+          {% else %}
+            <div class="hall-img-placeholder">фото «{{ item.data.name }}»</div>
+          {% endif %}
+          <h3>{{ item.data.name }}</h3>
+          {% if item.data.description %}<p class="hall-description">{{ item.data.description }}</p>{% endif %}
+          {% if item.data.price_hint %}<p class="hall-price">{{ item.data.price_hint }}</p>{% endif %}
+        </article>
+      {% endfor %}
+    </div>
+    <p class="section-cta"><a class="btn btn-outline" href="/services/#extra-services">Все услуги</a></p>
+  {% else %}
+    <p class="placeholder-note">Раздел зарезервирован — какие услуги показать, уточняем у клиента.</p>
+  {% endif %}
+</section>
+
 <section class="contacts-section" id="contacts">
   <h2>Контакты</h2>
   <div class="contacts-block">
@@ -121,7 +144,7 @@ description: "Фотостудия «Циркуль» в Сургуте — ар
       </div>
     </div>
     <div class="contacts-map">
-      <iframe src="https://yandex.ru/map-widget/v1/?ll=73.421236%2C61.266802&z=17&pt=73.421236,61.266802,pm2rdm" loading="lazy" allowfullscreen title="Карта проезда — Маяковского 57"></iframe>
+      <iframe src="https://yandex.ru/map-widget/v1/?ll=73.421236%2C61.266150&z=17&pt=73.421236,61.266150,pm2rdm" loading="lazy" allowfullscreen title="Карта проезда — Маяковского 57, строение 3"></iframe>
     </div>
   </div>
 </section>

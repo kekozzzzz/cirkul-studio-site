@@ -5,14 +5,15 @@ description: "Онлайн-запись на аренду зала в студи
 ---
 <section class="booking">
   <h1>Записаться</h1>
-  <p>Выберите зал и время прямо здесь — календарь Cue Business.</p>
+  <p class="section-intro">Выберите зал — откроется страница зала с фото и онлайн-календарём брони.</p>
 
-  <div class="booking-iframe-wrap">
-    <iframe src="https://circle.cue.business/services" loading="lazy" title="Бронирование — календарь Cue Business"></iframe>
+  <div class="booking-halls">
+    {% for hall in collections.halls %}
+      <a class="booking-hall" href="{{ hall.url }}#book"{% if hall.data.image %} style="background-image: url('{{ hall.data.image }}')"{% endif %}>
+        <span class="booking-hall-name">{{ hall.data.name }}</span>
+      </a>
+    {% endfor %}
   </div>
-  <p class="booking-fallback">
-    Если календарь не загрузился — <a href="https://circle.cue.business" target="_blank" rel="noopener">откройте бронирование в новой вкладке</a>.
-  </p>
 
   <p class="booking-alt">Если удобнее написать напрямую — свяжитесь с нами в соцсетях
   или по телефону <a href="tel:+79804520512">+7 (980) 452-05-12</a>.</p>
