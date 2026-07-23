@@ -24,11 +24,25 @@ description: "Фотостудия «Циркуль» в Сургуте — ар
 
 <section class="halls-preview" id="halls">
   <h2>Наши залы</h2>
-  <div class="halls-carousel drag-scroll">
-    {% set compact = true %}
-    {% for hall in collections.halls %}
-      {% include "hall-card.njk" %}
-    {% endfor %}
+  <div class="halls-slider">
+    <div class="halls-slider-track">
+      {% for hall in collections.halls %}
+        <article class="hall-slide"{% if hall.data.image %} style="background-image: url('{{ hall.data.image }}')"{% endif %}>
+          <div class="hall-slide-content">
+            <h3><a href="{{ hall.url }}">{{ hall.data.name }}</a></h3>
+            {% if hall.data.description %}<p>{{ hall.data.description }}</p>{% endif %}
+            <a class="btn" href="{{ hall.data.booking_url or '/booking/' }}" target="_blank" rel="noopener">Забронировать</a>
+          </div>
+        </article>
+      {% endfor %}
+    </div>
+    <button class="slider-arrow prev" type="button" aria-label="Предыдущий зал">‹</button>
+    <button class="slider-arrow next" type="button" aria-label="Следующий зал">›</button>
+    <div class="slider-dots">
+      {% for hall in collections.halls %}
+        <button class="slider-dot" type="button" aria-label="{{ hall.data.name }}"></button>
+      {% endfor %}
+    </div>
   </div>
 </section>
 

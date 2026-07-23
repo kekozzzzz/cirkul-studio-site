@@ -66,3 +66,37 @@ if (menuToggle && navDrawer && navOverlay) {
     if (e.key === "Escape") closeDrawer();
   });
 }
+
+// Слайдер залов на Главной (стрелки + точки, без нативного скролла)
+document.querySelectorAll(".halls-slider").forEach((slider) => {
+  const track = slider.querySelector(".halls-slider-track");
+  const slides = Array.from(track.children);
+  const prevBtn = slider.querySelector(".slider-arrow.prev");
+  const nextBtn = slider.querySelector(".slider-arrow.next");
+  const dots = Array.from(slider.querySelectorAll(".slider-dot"));
+  let index = 0;
+
+  function update() {
+    track.style.transform = `translateX(-${index * 100}%)`;
+    dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
+  }
+
+  prevBtn?.addEventListener("click", () => {
+    index = (index - 1 + slides.length) % slides.length;
+    update();
+  });
+
+  nextBtn?.addEventListener("click", () => {
+    index = (index + 1) % slides.length;
+    update();
+  });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener("click", () => {
+      index = i;
+      update();
+    });
+  });
+
+  update();
+});
