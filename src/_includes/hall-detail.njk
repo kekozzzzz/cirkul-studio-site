@@ -4,18 +4,26 @@ eleventyComputed:
   title: "{{ name }}"
   description: "{{ description }}"
 ---
+{% set photos = gallery if gallery and gallery.length else ([image] if image else []) %}
 <a class="hall-back" href="/services/">← Все залы</a>
 
 <article class="hall-detail">
-  <div class="hall-detail-gallery drag-scroll">
-    {% if gallery and gallery.length %}
-      {% for photo in gallery %}
-        <img src="{{ photo }}" alt="{{ name }}" loading="lazy">
-      {% endfor %}
-    {% elif image %}
-      <img src="{{ image }}" alt="{{ name }}" loading="lazy">
-    {% endif %}
-  </div>
+  {% if photos.length %}
+    <div class="halls-slider gallery-slider">
+      <div class="halls-slider-track">
+        {% for photo in photos %}
+          <div class="gallery-slide"><img src="{{ photo }}" alt="{{ name }}" loading="lazy"></div>
+        {% endfor %}
+      </div>
+      {% if photos.length > 1 %}
+        <button class="slider-arrow prev" type="button" aria-label="Предыдущее фото">‹</button>
+        <button class="slider-arrow next" type="button" aria-label="Следующее фото">›</button>
+        <div class="slider-dots">
+          {% for photo in photos %}<button class="slider-dot" type="button" aria-label="Фото {{ loop.index }}"></button>{% endfor %}
+        </div>
+      {% endif %}
+    </div>
+  {% endif %}
 
   <h1>{{ name }}</h1>
 
@@ -49,5 +57,15 @@ eleventyComputed:
     </ul>
   {% endif %}
 
-  <a class="btn" href="{{ booking_url or '/booking/' }}" target="_blank" rel="noopener">Забронировать</a>
+  <a class="btn" href="#book">Забронировать</a>
 </article>
+
+<section id="book" class="booking-embed">
+  <h3>Забронировать «{{ name }}»</h3>
+  <div class="booking-iframe-wrap">
+    <iframe src="{{ booking_url or 'https://circle.cue.business/services' }}" loading="lazy" title="Бронирование зала «{{ name }}»"></iframe>
+  </div>
+  <p class="booking-fallback">
+    Если календарь не загрузился — <a href="{{ booking_url or 'https://circle.cue.business' }}" target="_blank" rel="noopener">откройте бронирование в новой вкладке</a>.
+  </p>
+</section>

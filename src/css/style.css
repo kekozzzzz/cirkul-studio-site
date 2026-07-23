@@ -62,6 +62,10 @@ h1, h2, h3 {
   letter-spacing: 0.01em;
 }
 
+h1, h2 {
+  text-align: center;
+}
+
 .site-header, .site-footer {
   display: flex;
   flex-wrap: wrap;
@@ -291,7 +295,11 @@ main {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding-bottom: 0.75rem;
-  scrollbar-width: thin;
+  scrollbar-width: none;
+}
+
+.halls-carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .halls-carousel .hall-card {
@@ -362,28 +370,31 @@ main {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.35);
+  background: rgba(0, 0, 0, 0.4);
   color: #fff;
   border: none;
-  width: 2.75rem;
-  height: 2.75rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
-  font-size: 1.5rem;
+  font-size: 1.1rem;
   line-height: 1;
   cursor: pointer;
   z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .slider-arrow:hover {
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.6);
 }
 
 .slider-arrow.prev {
-  left: 1.25rem;
+  left: 0.75rem;
 }
 
 .slider-arrow.next {
-  right: 1.25rem;
+  right: 0.75rem;
 }
 
 .slider-dots {
@@ -479,6 +490,9 @@ main {
 .section-intro {
   color: var(--color-muted);
   max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
 }
 
 .rent-rules .rule {
@@ -640,6 +654,11 @@ main {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding-bottom: 0.75rem;
+  scrollbar-width: none;
+}
+
+.community-carousel::-webkit-scrollbar {
+  display: none;
 }
 
 .community-card {
@@ -688,22 +707,46 @@ main {
   .contacts-block { grid-template-columns: 1fr; }
 }
 
-/* Страница отдельного зала */
-.hall-detail-gallery {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  padding-bottom: 0.75rem;
+/* Страница отдельного зала — галерея как слайдер */
+.gallery-slider {
   margin-bottom: 1.5rem;
 }
 
-.hall-detail-gallery img {
-  flex: 0 0 min(420px, 85vw);
-  aspect-ratio: 4 / 3;
+.gallery-slide {
+  flex: 0 0 100%;
+}
+
+.gallery-slide img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
+  display: block;
+}
+
+/* Встроенный календарь бронирования (Cue Business в iframe) */
+.booking-embed {
+  margin-top: 2.5rem;
+}
+
+.booking-iframe-wrap {
+  margin-top: 1rem;
+  border: 1px solid var(--color-border);
   border-radius: var(--radius);
-  scroll-snap-align: start;
+  overflow: hidden;
+}
+
+.booking-iframe-wrap iframe {
+  width: 100%;
+  height: 720px;
+  border: 0;
+  display: block;
+}
+
+.booking-fallback {
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--color-muted);
+  text-align: center;
 }
 
 .hall-detail-meta {
@@ -725,6 +768,10 @@ main {
   font-size: 0.8rem;
   color: var(--color-muted);
   text-transform: uppercase;
+}
+
+.hall-detail h3 {
+  text-align: center;
 }
 
 .hall-back {

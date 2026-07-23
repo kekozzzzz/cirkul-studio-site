@@ -23,7 +23,7 @@ description: "Фотостудия «Циркуль» в Сургуте — ар
           <div class="hall-slide-content">
             <h3><a href="{{ hall.url }}">{{ hall.data.name }}</a></h3>
             {% if hall.data.description %}<p>{{ hall.data.description }}</p>{% endif %}
-            <a class="btn" href="{{ hall.data.booking_url or '/booking/' }}" target="_blank" rel="noopener">Забронировать</a>
+            <a class="btn" href="{{ hall.url }}">Подробнее и бронь</a>
           </div>
         </article>
       {% endfor %}
@@ -121,7 +121,7 @@ description: "Фотостудия «Циркуль» в Сургуте — ар
       </div>
     </div>
     <div class="contacts-map">
-      <iframe src="https://yandex.ru/map-widget/v1/?text=Сургут%2C%20ул.%20Маяковского%2057%2C%20строение%203" loading="lazy" allowfullscreen title="Карта проезда"></iframe>
+      <iframe src="https://yandex.ru/map-widget/v1/?ll=73.421236%2C61.266802&z=17&pt=73.421236,61.266802,pm2rdm" loading="lazy" allowfullscreen title="Карта проезда — Маяковского 57"></iframe>
     </div>
   </div>
 </section>
