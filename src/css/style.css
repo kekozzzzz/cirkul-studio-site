@@ -907,12 +907,23 @@ main {
   text-align: center;
 }
 
-.hall-back {
-  display: inline-block;
+.hall-nav-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
   margin-bottom: 1.5rem;
+}
+
+.hall-back, .hall-next {
   color: var(--color-muted);
   font-size: 0.9rem;
   text-decoration: none;
+}
+
+.hall-next:hover, .hall-back:hover {
+  color: var(--color-accent);
 }
 
 /* Плавающая кнопка "Забронировать онлайн" */

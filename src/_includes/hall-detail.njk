@@ -5,7 +5,15 @@ eleventyComputed:
   description: "{{ description }}"
 ---
 {% set photos = gallery if gallery and gallery.length else ([image] if image else []) %}
-<a class="hall-back" href="/services/">← Все залы</a>
+<div class="hall-nav-top">
+  <a class="hall-back" href="/services/">← Все залы</a>
+  {% for h in collections.halls %}
+    {% if h.url == page.url %}
+      {% set nextHall = collections.halls[(loop.index0 + 1) % collections.halls.length] %}
+      <a class="hall-next" href="{{ nextHall.url }}">Следующий зал: {{ nextHall.data.name }} →</a>
+    {% endif %}
+  {% endfor %}
+</div>
 
 <article class="hall-detail">
   {% if photos.length %}
