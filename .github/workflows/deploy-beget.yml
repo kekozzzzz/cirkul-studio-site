@@ -23,11 +23,12 @@ jobs:
       - name: Build site
         run: npm run build
 
-      - name: Deploy to Beget via FTP
+      - name: Deploy to Beget via FTPS
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
           local-dir: ./_site/
           server-dir: ./
