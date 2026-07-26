@@ -16,6 +16,24 @@ collections:
           - { label: "Обложка (фон на Главной)", name: "cover", widget: "image", required: false }
           - { label: "Ссылка на бронирование (Cue Business)", name: "booking_url", widget: "string" }
           - { label: "Бегущая строка-анонс (пусто — строка не показывается)", name: "announcement", widget: "string", required: false }
+          - { label: "Телефон (как показывать на сайте)", name: "phone_display", widget: "string", hint: "Например: +7 (980) 452-05-12" }
+          - { label: "Телефон (для кнопки звонка, только цифры и +)", name: "phone_href", widget: "string", hint: "Например: +79804520512, без скобок и пробелов" }
+
+  - name: "legal"
+    label: "Юридические страницы"
+    files:
+      - name: "privacy"
+        label: "Политика конфиденциальности"
+        file: "src/legal/privacy.md"
+        fields:
+          - { label: "Заголовок страницы", name: "title", widget: "string" }
+          - { label: "Текст", name: "body", widget: "markdown" }
+      - name: "consent"
+        label: "Согласие на обработку персональных данных"
+        file: "src/legal/consent.md"
+        fields:
+          - { label: "Заголовок страницы", name: "title", widget: "string" }
+          - { label: "Текст", name: "body", widget: "markdown" }
 
   - name: "halls"
     label: "Залы"

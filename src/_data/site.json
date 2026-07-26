@@ -1,5 +1,7 @@
 {
   "cover": "/images/studio-cover.jpg",
   "booking_url": "https://circle.cue.business",
-  "announcement": ""
+  "announcement": "",
+  "phone_display": "+7 (980) 452-05-12",
+  "phone_href": "+79804520512"
 }
