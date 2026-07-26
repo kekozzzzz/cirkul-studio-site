@@ -31,7 +31,7 @@ jobs:
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
         run: |
           sudo apt-get update -y && sudo apt-get install -y lftp
-          lftp -d -u "$FTP_USERNAME,$FTP_PASSWORD" -e "\
+          lftp -u "$FTP_USERNAME,$FTP_PASSWORD" -e "\
             set ftp:ssl-force true; \
             set ssl:verify-certificate no; \
             set ftp:passive-mode true; \
@@ -39,4 +39,9 @@ jobs:
             set net:max-retries 2; \
             set net:reconnect-interval-base 3; \
             mirror -R --delete --parallel=4 --verbose ./_site/ /; \
-            bye" "$FTP_HOST"
+            exit" "$FTP_HOST" || true
+
+      - name: Verify deployment
+        run: |
+          content=$(curl -sf -A "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36" "http://${{ secrets.FTP_HOST }}/")
+          echo "$content" | grep -q "Фотостудия «Циркуль»" && echo "Деплой подтверждён: сайт отвечает корректным содержимым" || (echo "Деплой не подтверждён — сайт не отдаёт ожидаемый контент" && exit 1)
