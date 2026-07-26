@@ -24,7 +24,7 @@ jobs:
         run: npm run build
 
       - name: Deploy to Beget via FTPS (lftp)
-        timeout-minutes: 5
+        timeout-minutes: 15
         env:
           FTP_HOST: ${{ secrets.FTP_HOST }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
@@ -38,5 +38,5 @@ jobs:
             set net:timeout 10; \
             set net:max-retries 2; \
             set net:reconnect-interval-base 3; \
-            mirror -R --delete --verbose ./_site/ /; \
+            mirror -R --delete --parallel=4 --verbose ./_site/ /; \
             bye" "$FTP_HOST"
