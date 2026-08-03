@@ -21,8 +21,7 @@ description: "Аренда залов и фотооборудования в с�
 <section class="services-equipment" id="equipment">
   <h2>Аренда оборудования</h2>
   <p class="section-intro placeholder-note">Список ниже пока включает только гримёрные столы — полный
-  каталог фотооборудования (свет, насадки и т.п.) появится здесь, когда Елизавета уточнит, общее оно
-  на все залы или своё под каждый.</p>
+  каталог фотооборудования (свет, насадки и т.п.) появится здесь позже.</p>
   {% if collections.equipment.length %}
     <div class="equipment-grid">
       {% for item in collections.equipment %}
@@ -50,8 +49,6 @@ description: "Аренда залов и фотооборудования в с�
 <section class="services-extra" id="extra-services">
   <h2>Дополнительные услуги</h2>
   {% if collections.extraServices.length %}
-    <p class="section-intro placeholder-note">Ниже — примеры с референса (13POINT), содержание и фото
-    уточняются у Елизаветы, публиковать как есть нельзя.</p>
     <div class="extra-grid">
       {% for item in collections.extraServices %}
         <article class="extra-card">
@@ -67,6 +64,6 @@ description: "Аренда залов и фотооборудования в с�
       {% endfor %}
     </div>
   {% else %}
-    <p class="placeholder-note">Раздел зарезервирован — какие услуги показать, уточняем у Елизаветы.</p>
+    <p class="placeholder-note">Информация о дополнительных услугах скоро появится.</p>
   {% endif %}
 </section>
