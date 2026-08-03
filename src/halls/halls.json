@@ -1,3 +1,4 @@
 {
-  "permalink": false
+  "layout": "hall-detail.njk",
+  "permalink": "/services/{{ page.fileSlug }}/"
 }

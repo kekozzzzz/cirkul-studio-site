@@ -17,5 +17,6 @@ gallery:
   - "/images/halls/gallery/newton/3.jpg"
   - "/images/halls/gallery/newton/4.jpg"
   - "/images/halls/gallery/newton/5.jpg"
+  - "/images/halls/gallery/newton/6.jpg"
 booking_url: "https://circle.cue.business/booking/14643"
 ---

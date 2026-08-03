@@ -35,4 +35,5 @@ collections:
       - { label: "Цена (подсказка)", name: "price_hint", widget: "string" }
       - { label: "Часы работы", name: "hours", widget: "string", required: false }
       - { label: "Фото-обложка (для карточки)", name: "image", widget: "image", required: false }
+      - { label: "Фотогалерея зала (для страницы зала)", name: "gallery", widget: "list", field: { label: "Фото", name: "photo", widget: "image" }, required: false }
       - { label: "Ссылка на бронь", name: "booking_url", widget: "string", required: false }

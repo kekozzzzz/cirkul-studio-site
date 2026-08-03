@@ -24,6 +24,9 @@
     {% endif %}
   {% endif %}
   <div class="hall-card-actions">
-    <a class="btn" href="{{ hall.data.booking_url }}" target="_blank" rel="noopener">Забронировать</a>
+    <a class="btn btn-outline" href="{{ hall.url }}">Подробнее</a>
+    {% if not compact %}
+      <a class="btn" href="{{ hall.data.booking_url }}" target="_blank" rel="noopener">Забронировать</a>
+    {% endif %}
   </div>
 </article>

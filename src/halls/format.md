@@ -15,5 +15,6 @@ gallery:
   - "/images/halls/gallery/format/3.jpg"
   - "/images/halls/gallery/format/4.jpg"
   - "/images/halls/gallery/format/5.jpg"
+  - "/images/halls/gallery/format/6.jpg"
 booking_url: "https://formatloft.cue.business"
 ---

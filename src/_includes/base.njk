@@ -13,18 +13,25 @@
 <body>
   <header class="site-header">
     <a class="logo logo-text" href="/">Циркуль.</a>
-    <nav class="site-nav">
-      <a href="/">Главная</a>
-      <a href="/services/">Услуги</a>
-      <a href="/rent/">Аренда</a>
-      <a href="/booking/">Записаться</a>
-    </nav>
+    <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="nav-drawer">☰</button>
+  </header>
+
+  <div class="nav-drawer-overlay"></div>
+  <nav class="nav-drawer" id="nav-drawer">
+    <button class="nav-drawer-close" type="button" aria-label="Закрыть меню">×</button>
+    <a href="/">Главная</a>
+    <a href="/services/">Услуги</a>
+    <a href="/rent/">Аренда</a>
+    <a href="/booking/">Записаться</a>
+    <hr class="nav-drawer-divider">
+    <a href="/#halls">Залы</a>
+    <a href="/#contacts">Контакты</a>
     <div class="socials">
       <a href="https://vk.me/studio_circle" aria-label="VK">VK</a>
       <a href="https://t.me/circle_surgut" aria-label="Telegram">TG</a>
       <a href="https://instagram.com/circle_2.0" aria-label="Instagram">IG</a>
     </div>
-  </header>
+  </nav>
 
   <main>
     {{ content | safe }}
@@ -57,6 +64,7 @@
 
   <a class="floating-book" href="/booking/">Забронировать онлайн</a>
 
+  <script src="/js/main.js" defer></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
   <script>
     if (window.netlifyIdentity) {
