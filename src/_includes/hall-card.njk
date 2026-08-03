@@ -15,25 +15,15 @@
         {% for f in hall.data.features %}<li>{{ f }}</li>{% endfor %}
       </ul>
     {% endif %}
-  {% endif %}
-
-  {% if not compact %}
-    <p class="hall-limit">
-      {%- if hall.data.capacity_included -%}
-        до {{ hall.data.capacity_included }} чел. включено в цену{% if hall.data.capacity_total %} (всего вмещает до {{ hall.data.capacity_total }}){% endif %}
-      {%- elif hall.data.limit -%}
-        {{ hall.data.limit }}
-      {%- endif -%}
-    </p>
+    {% if hall.data.capacity_included %}
+      <p class="hall-limit">до {{ hall.data.capacity_included }} чел. включено в цену{% if hall.data.capacity_total %} (всего вмещает до {{ hall.data.capacity_total }}){% endif %}</p>
+    {% endif %}
     <p class="hall-price">{{ hall.data.price_hint }}</p>
     {% if hall.data.hours %}
       <p class="hall-hours">{{ hall.data.hours }}</p>
     {% endif %}
   {% endif %}
   <div class="hall-card-actions">
-    <a class="btn btn-outline" href="{{ hall.url }}">Подробнее</a>
-    {% if not compact %}
-      <a class="btn" href="{{ hall.url }}#book">Забронировать</a>
-    {% endif %}
+    <a class="btn" href="{{ hall.data.booking_url }}" target="_blank" rel="noopener">Забронировать</a>
   </div>
 </article>

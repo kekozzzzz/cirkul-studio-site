@@ -1,69 +1,15 @@
 ---
 layout: base.njk
 title: Услуги
-description: "Аренда залов и фотооборудования в студии «Циркуль», Сургут — цены, фото, онлайн-бронирование."
+description: "Аренда залов в студии «Циркуль», Сургут — цены, фото, онлайн-бронирование."
 ---
 <section class="services-halls">
   <h1>Аренда залов</h1>
   <p class="section-intro">Пять залов под разные сценарии съёмки — выбирайте подходящий и
   бронируйте на сайте.</p>
-  <div class="carousel-nav">
-    <button class="slider-arrow prev" type="button" aria-label="Назад">‹</button>
-    <div class="halls-carousel carousel-scroll halls-carousel-full">
-      {% for hall in collections.halls %}
-        {% include "hall-card.njk" %}
-      {% endfor %}
-    </div>
-    <button class="slider-arrow next" type="button" aria-label="Вперёд">›</button>
+  <div class="halls-grid">
+    {% for hall in collections.halls %}
+      {% include "hall-card.njk" %}
+    {% endfor %}
   </div>
-</section>
-
-<section class="services-equipment" id="equipment">
-  <h2>Аренда оборудования</h2>
-  <p class="section-intro placeholder-note">Список ниже пока включает только гримёрные столы — полный
-  каталог фотооборудования (свет, насадки и т.п.) появится здесь позже.</p>
-  {% if collections.equipment.length %}
-    <div class="equipment-grid">
-      {% for item in collections.equipment %}
-        <article class="equipment-card">
-          {% if item.data.image %}
-            <img src="{{ item.data.image }}" alt="{{ item.data.name }}" loading="lazy">
-          {% else %}
-            <div class="hall-img-placeholder">фото «{{ item.data.name }}»</div>
-          {% endif %}
-          {% if item.data.category %}<p class="equipment-category">{{ item.data.category }}</p>{% endif %}
-          <h3>{{ item.data.name }}</h3>
-          <p class="hall-price">{{ item.data.price_hint }}</p>
-          {% if item.data.hours %}<p class="hall-hours">{{ item.data.hours }}</p>{% endif %}
-          {% if item.data.booking_url %}
-            <a class="btn" href="{{ item.data.booking_url }}" target="_blank" rel="noopener">Забронировать</a>
-          {% endif %}
-        </article>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p class="placeholder-note">Каталог оборудования появится здесь позже.</p>
-  {% endif %}
-</section>
-
-<section class="services-extra" id="extra-services">
-  <h2>Дополнительные услуги</h2>
-  {% if collections.extraServices.length %}
-    <div class="extra-grid">
-      {% for item in collections.extraServices %}
-        <article class="extra-card">
-          {% if item.data.image %}
-            <img src="{{ item.data.image }}" alt="{{ item.data.name }}" loading="lazy">
-          {% else %}
-            <div class="hall-img-placeholder">фото «{{ item.data.name }}»</div>
-          {% endif %}
-          <h3>{{ item.data.name }}</h3>
-          {% if item.data.description %}<p class="hall-description">{{ item.data.description }}</p>{% endif %}
-          {% if item.data.price_hint %}<p class="hall-price">{{ item.data.price_hint }}</p>{% endif %}
-        </article>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p class="placeholder-note">Информация о дополнительных услугах скоро появится.</p>
-  {% endif %}
 </section>

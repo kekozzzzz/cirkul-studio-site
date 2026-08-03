@@ -13,119 +13,19 @@ description: "Фотостудия «Циркуль» в Сургуте — ар
   </div>
 </section>
 
-
 <section class="halls-preview" id="halls">
   <h2>Наши залы</h2>
-  <div class="halls-slider">
-    <div class="halls-slider-track">
-      {% for hall in collections.halls %}
-        <article class="hall-slide"{% if hall.data.image %} style="background-image: url('{{ hall.data.image }}')"{% endif %}>
-          <div class="hall-slide-content">
-            <h3><a href="{{ hall.url }}">{{ hall.data.name }}</a></h3>
-            {% if hall.data.description %}<p>{{ hall.data.description }}</p>{% endif %}
-            <a class="btn" href="{{ hall.url }}">Подробнее</a>
-          </div>
-        </article>
-      {% endfor %}
-    </div>
-    <button class="slider-arrow prev" type="button" aria-label="Предыдущий зал">‹</button>
-    <button class="slider-arrow next" type="button" aria-label="Следующий зал">›</button>
-    <div class="slider-dots">
-      {% for hall in collections.halls %}
-        <button class="slider-dot" type="button" aria-label="{{ hall.data.name }}"></button>
-      {% endfor %}
-    </div>
+  <div class="halls-grid">
+    {% for hall in collections.halls %}
+      {% set compact = true %}
+      {% include "hall-card.njk" %}
+    {% endfor %}
   </div>
 </section>
 
 <section class="perks">
   <h2>Наши преимущества</h2>
   <p class="placeholder-note">Раздел появится здесь позже.</p>
-</section>
-
-<section class="teaser-section" id="makeup">
-  <h2>Гримёрное место</h2>
-  <div class="teasers">
-    {% for item in collections.equipment %}
-      {% if item.data.category == "Гримёрный стол" %}
-        <article class="teaser-card">
-          {% if item.data.image %}
-            <img src="{{ item.data.image }}" alt="{{ item.data.name }}" loading="lazy">
-          {% else %}
-            <div class="hall-img-placeholder">фото «{{ item.data.name }}»</div>
-          {% endif %}
-          <h3>{{ item.data.name }}</h3>
-          <p class="hall-price">{{ item.data.price_hint }}</p>
-          <a class="btn btn-outline" href="/services/#equipment">Подробнее</a>
-        </article>
-      {% endif %}
-    {% endfor %}
-  </div>
-</section>
-
-<section class="teaser-section" id="equipment-teaser">
-  <h2>Оборудование</h2>
-  <p class="section-intro">Свет, фоны и аксессуары для съёмки — полный список по каждому залу
-  появится здесь позже.</p>
-  <a class="btn btn-outline" href="/services/#equipment">Смотреть оборудование во всех залах</a>
-</section>
-
-<section class="promo-section" id="promos">
-  <h2>Акции</h2>
-  {% if collections.promos.length %}
-    <div class="promo-grid">
-      {% for promo in collections.promos %}
-        <article class="promo-card">
-          {% if promo.data.image %}
-            <img src="{{ promo.data.image }}" alt="{{ promo.data.name }}" loading="lazy">
-          {% endif %}
-          <h3>{{ promo.data.name }}</h3>
-          {% if promo.data.description %}<p>{{ promo.data.description }}</p>{% endif %}
-        </article>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p class="placeholder-note">Актуальных акций пока нет — следите за обновлениями.</p>
-  {% endif %}
-</section>
-
-<section class="community-section" id="community">
-  <h2>Снято у нас</h2>
-  {% if collections.communityPhotos.length %}
-    <div class="community-carousel drag-scroll">
-      {% for photo in collections.communityPhotos %}
-        <a class="community-card" href="{{ photo.data.link or '#' }}"{% if photo.data.link %} target="_blank" rel="noopener"{% endif %}>
-          <img src="{{ photo.data.image }}" alt="{{ photo.data.caption or 'Снято у нас' }}" loading="lazy">
-          {% if photo.data.caption %}<p>{{ photo.data.caption }}</p>{% endif %}
-        </a>
-      {% endfor %}
-    </div>
-  {% else %}
-    <p class="placeholder-note">Здесь скоро появятся фото и истории наших клиентов.</p>
-  {% endif %}
-</section>
-
-<section class="services-extra" id="extra">
-  <h2>Дополнительные услуги</h2>
-  {% if collections.extraServices.length %}
-    <div class="extra-grid">
-      {% for item in collections.extraServices %}
-        <article class="extra-card">
-          {% if item.data.image %}
-            <img src="{{ item.data.image }}" alt="{{ item.data.name }}" loading="lazy">
-          {% else %}
-            <div class="hall-img-placeholder">фото «{{ item.data.name }}»</div>
-          {% endif %}
-          <h3>{{ item.data.name }}</h3>
-          {% if item.data.description %}<p class="hall-description">{{ item.data.description }}</p>{% endif %}
-          {% if item.data.price_hint %}<p class="hall-price">{{ item.data.price_hint }}</p>{% endif %}
-        </article>
-      {% endfor %}
-    </div>
-    <p class="section-cta"><a class="btn btn-outline" href="/services/#extra-services">Все услуги</a></p>
-  {% else %}
-    <p class="placeholder-note">Информация о дополнительных услугах скоро появится.</p>
-  {% endif %}
 </section>
 
 <section class="contacts-section" id="contacts">
